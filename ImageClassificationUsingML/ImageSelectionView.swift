@@ -18,6 +18,8 @@ struct ImageSelectionView: View {
     
     var body: some View {
         VStack{
+            Spacer()
+                .frame(height: 200)
             PhotosPicker(
                 selection: $selectedItem,
                 matching: .images,
@@ -45,39 +47,62 @@ struct ImageSelectionView: View {
             classifyImage()
         }
         Spacer()
+            .frame(height: 200)
         Text(classificationResult)
+            .multilineTextAlignment(.center)
+            // Remove the line limit or set a higher number if necessary
+            .lineLimit(nil) // or .lineLimit(10) for example
+            .font(.system(size: 16)) // Optional: Adjust the font size
+            .padding() // Add padding around the text
+            .frame(minHeight: 60) // Optional: Set a minimum frame height
+            .fixedSize(horizontal: false, vertical: true) // This ensures that the text view expands vertically to fit the content
 
     }
-    func classifyImage() {
-        guard selectedImageData != nil else { return }
-        
-        if let model = try? VNCoreMLModel(for: MobileNetV2().model) {
-            let request = VNCoreMLRequest(model: model) { request, error in
-                
-                print("\(request)\(String(describing: error))")
-                if let results = request.results as? [VNClassificationObservation] {
-                    if let topResult = results.first {
-                        self.classificationResult = "Classification: \(topResult.identifier)\nConfidence: \(topResult.confidence)"
-                    } else {
-                        self.classificationResult = "No results found."
-                    }
-                } else if let error = error {
+    // Function to classify image
+
+    // Function to classify image
+    private func classifyImage() {
+        guard let selectedImageData = selectedImageData,
+              let image = UIImage(data: selectedImageData),
+              let ciImage = CIImage(image: image) else {
+            classificationResult = "Could not load image"
+            return
+        }
+
+        // Load the ML model
+        guard let model = try? VNCoreMLModel(for: MobileNetV2().model) else {
+            classificationResult = "Failed to load model"
+            return
+        }
+
+        // Create a request for classifying the image
+        let request = VNCoreMLRequest(model: model) { request, error in
+            guard let results = request.results as? [VNClassificationObservation],
+                  let topResult = results.first else {
+                self.classificationResult = "Could not classify image"
+                return
+            }
+
+            // Update classification label
+            DispatchQueue.main.async {
+                self.classificationResult = "Classification: \(topResult.identifier) with confidence \(topResult.confidence)"
+            }
+        }
+
+        // Execute the request
+        let handler = VNImageRequestHandler(ciImage: ciImage)
+        DispatchQueue.global(qos: .userInitiated).async {
+            do {
+                try handler.perform([request])
+            } catch {
+                DispatchQueue.main.async {
                     self.classificationResult = "Error: \(error.localizedDescription)"
                 }
             }
-            print("I'm here")
-            //            let handler = VNImageRequestHandler(cgImage: image as! CGImage)
-            //               do {
-            //                   try handler.perform([request])
-            //               } catch {
-            //                   self.classificationResult = "Error performing image classification."
-            //               }
-        }
-        else {
-            // Handle the error gracefully
-            print("Error: Failed to initialize VNCoreMLModel.")
         }
     }
+
+    
 }
 #Preview {
     ImageSelectionView()

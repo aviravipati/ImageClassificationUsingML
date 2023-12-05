@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		48D04A3B2B1D84950022E72C /* ImageClassificationUsingMLApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D04A3A2B1D84950022E72C /* ImageClassificationUsingMLApp.swift */; };
-		48D04A3D2B1D84950022E72C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D04A3C2B1D84950022E72C /* ContentView.swift */; };
 		48D04A3F2B1D84960022E72C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48D04A3E2B1D84960022E72C /* Assets.xcassets */; };
 		48D04A422B1D84960022E72C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48D04A412B1D84960022E72C /* Preview Assets.xcassets */; };
 		48D04A442B1D84960022E72C /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D04A432B1D84960022E72C /* Persistence.swift */; };
@@ -40,7 +39,6 @@
 /* Begin PBXFileReference section */
 		48D04A372B1D84950022E72C /* ImageClassificationUsingML.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageClassificationUsingML.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48D04A3A2B1D84950022E72C /* ImageClassificationUsingMLApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageClassificationUsingMLApp.swift; sourceTree = "<group>"; };
-		48D04A3C2B1D84950022E72C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		48D04A3E2B1D84960022E72C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48D04A412B1D84960022E72C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		48D04A432B1D84960022E72C /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -105,7 +103,6 @@
 			isa = PBXGroup;
 			children = (
 				48D04A3A2B1D84950022E72C /* ImageClassificationUsingMLApp.swift */,
-				48D04A3C2B1D84950022E72C /* ContentView.swift */,
 				48D04A6F2B1D872E0022E72C /* ImageSelectionView.swift */,
 				48D04A722B1D8EDA0022E72C /* MobileNetV2.mlmodel */,
 				48D04A3E2B1D84960022E72C /* Assets.xcassets */,
@@ -277,7 +274,6 @@
 				48D04A702B1D872E0022E72C /* ImageSelectionView.swift in Sources */,
 				48D04A442B1D84960022E72C /* Persistence.swift in Sources */,
 				48D04A472B1D84960022E72C /* ImageClassificationUsingML.xcdatamodeld in Sources */,
-				48D04A3D2B1D84950022E72C /* ContentView.swift in Sources */,
 				48D04A3B2B1D84950022E72C /* ImageClassificationUsingMLApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -6,14 +6,15 @@
 //
 
 import SwiftUI
+import Vision
 
 @main
 struct ImageClassificationUsingMLApp: App {
     let persistenceController = PersistenceController.shared
-
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ImageSelectionView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
